@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<title>Site</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+
+<body>
+    <div class="topnav">
+        <a></a>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- form -->
+    <div class="form">
+        <h2>Send an Email</h2>
+        <form action="send_email.php" method="post">
+            <label for="email">Your Email:</label>
+            <br><br>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+            <label for="message">Your Message:</label>
+            <br><br>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <br><br>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="links">
+            <a href="https://www.facebook.com" target="_blank">
+                <img class="logos" src="../css/logos/Facebook_Logo_Primary.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img class="logos" src="../css/logos/Instagram_Glyph_Gradient.png" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com" target="_blank">
+                <img class="logos" src="../css/logos/yt_logo_rgb_light.png" alt="YouTube">
+            </a>
+        </div>
+    </footer>
+</body>
+
+</html>
