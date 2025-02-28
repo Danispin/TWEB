@@ -112,3 +112,64 @@ footer {
 .contact a:hover {
     transform: scale(1.1);
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.WCU {
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+}
+
+.HIW {
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.WCU ul,
+.HIW ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 0px;
+    width: 100%;
+}
+
+.HIW h2 {
+    text-align: center;
+    display: block;
+    width: 50%;
+    margin: 0 40% 0 50%;
+}
+
+.WCU h2 {
+    text-align: center;
+    display: block;
+    width: 50%;
+    margin: 0 40% 5px 0;
+}
+
+.testimonials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonials ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 30% 0 30%;
+}
