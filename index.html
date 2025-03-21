@@ -2,26 +2,29 @@
 <html>
 
 <title>Site</title>
-<link rel="stylesheet" href="../css/mystyle.css">
+<link rel="stylesheet" href="css/mystyle.css">
 
 <body>
     <header>
         <!-- navbar -->
         <nav class="topnav">
-            <a></a>
+            <br>
+            <img src="css/logos/logo.png" alt="Logo" class="logo">
             <a href="index.html">Home</a>
-            <a href="experts.html">Experts</a>
-            <a href="contact.html">Contact</a>
+            <a href="html/experts.html">Experts</a>
+            <a href="html/products.html">Products</a>
+            <a href="html/contact.html">Contact</a>
         </nav>
         <br></br>
 
+        <br>
         <!-- text -->
         <h1 class="welcome">Leave Your Pet in Safe Hands – Expert Animal Care While You’re Away</h1>
     </header>
     <main>
         <h2 style="text-align: center; display: block; width: 50%; margin: 0 50% 0 50%;">
             Going on vacation? Busy with work? Our trusted pet sitters provide top-quality care for your furry (or
-            feathery) friend while you're away. Because your pet deserves the best.
+            feathery) friend while you're away. Because your pet deserves the best!
         </h2>
         <br><br>
         <div class="HIW">
@@ -59,20 +62,71 @@
                     first
                     aid
                     and have access to trusted veterinarians if needed.</li>
+
             </ul>
         </div>
     </main>
     <br><br>
     <!-- contact -->
     <div class="contact">
-        <a href="avatar1.html"><img src="../css/avatars/avatar1.png" alt="Serious Guy"></a>
-        <a href="avatar2.html"><img src="../css/avatars/avatar2.png" alt="Glasses Nerd"></a>
-        <a href="avatar3.html"><img src="../css/avatars/avatar3.png" alt="Girl in a jacket"></a>
-        <a href="avatar4.html"><img src="../css/avatars/avatar4.png" alt="Black Guy"></a>
-        <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"><img src="../css/avatars/avatar5.png"
-                alt="Guy Dancing"></a>
+        <a href="html/avatar1.html">
+            <img src="css/avatars/profile1/avatar1.png" alt="Serious Guy" onmouseover="showProfile(event, 'profile1')"
+                onmouseleave="hideProfile('profile1')" id="avatar1">
+        </a>
+        <a href="html/avatar2.html">
+            <img src="css/avatars/profile2/avatar1.png" alt="Glasses Nerd" onmouseover="showProfile(event, 'profile2')"
+                onmouseleave="hideProfile('profile2')" id="avatar2">
+        </a>
+        <a href="html/avatar3.html">
+            <img src="css/avatars/profile3/avatar1.png" alt="Girl in a jacket"
+                onmouseover="showProfile(event, 'profile3')" onmouseleave="hideProfile('profile3')" id="avatar3">
+        </a>
+        <a href="html/avatar4.html">
+            <img src="css/avatars/profile4/avatar1.png" alt="Black Guy" onmouseover="showProfile(event, 'profile4')"
+                onmouseleave="hideProfile('profile4')" id="avatar4">
+        </a>
+        <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+            <img src="css/avatars/avatar5.png" alt="Guy Dancing">
+        </a>
     </div>
+
     <br><br>
+
+    <!-- profile boxes at cand you hover over profile -->
+
+    <div id="profile-box1" class="profile-box">
+        <h3>Serious Guy</h3>
+        <p>5$/Visit</p>
+        <p>Experience: 5 years</p>
+        <p>Location: Chisinau</p>
+        <p>Preferences:</p>
+        <p>Cat, Dogs</p>
+        <img id="profile-img1" src="css/avatars/profile1/avatar1.png">
+    </div>
+
+    <div id="profile-box2" class="profile-box">
+        <h3>Glasses Nerd</h3>
+        <p>Vet</p>
+        <img id="profile-img2" src="css/avatars/profile2/avatar1.png">
+    </div>
+
+    <div id="profile-box3" class="profile-box">
+        <h3>Girl in a Jacket</h3>
+        <p>10$/Visit</p>
+        <p>Experience: 2 years</p>
+        <p>Location: Chisinau</p>
+        <img id="profile-img3" src="css/avatars/profile3/avatar1.png">
+    </div>
+
+    <div id="profile-box4" class="profile-box">
+        <h3>Black Guy</h3>
+        <p>5$/Visit</p>
+        <p>Experience: 3 years</p>
+        <p>Location: Chisinau</p>
+        <p>Preferences:</p>
+        <p>Dogs</p>
+        <img id="profile-img4" src="css/avatars/profile4/avatar1.png">
+    </div>
 
     <!--  text -->
     <div class="testimonials">
@@ -94,6 +148,7 @@
             <input type="email" id="email" name="email" required>
             <br><br>
             <button type="submit">Subscribe!</button>
+            <br><br>
         </form>
     </div>
 
@@ -103,17 +158,17 @@
     <footer>
         <div class="links">
             <a href="https://www.facebook.com" target="_blank">
-                <img class="logos" src="../css/logos/Facebook_Logo_Primary.png" alt="Facebook">
+                <img class="logos" src="css/logos/Facebook_Logo_Primary.png" alt="Facebook">
             </a>
             <a href="https://www.instagram.com" target="_blank">
-                <img class="logos" src="../css/logos/Instagram_Glyph_Gradient.png" alt="Instagram">
+                <img class="logos" src="css/logos/Instagram_Glyph_Gradient.png" alt="Instagram">
             </a>
             <a href="https://www.youtube.com" target="_blank">
-                <img class="logos" src="../css/logos/yt_logo_rgb_light.png" alt="YouTube">
+                <img class="logos" src="css/logos/yt_logo_rgb_light.png" alt="YouTube">
             </a>
         </div>
     </footer>
-
+    <script src="./js/profileSlider.js"></script>
 </body>
 
 </html>
