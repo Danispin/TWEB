@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
+    <link rel="stylesheet" href="authstyle.css">
 </head>
 <body>
     <h2>Register</h2>
@@ -35,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Register</button>
     </form>
+    <h2> or would you prefer to go back to the main page </h2>
+    <a href = "index.php">Main Page</a>
+    <h2> or would you prefer to logout </h2>
+    <a href = "dashboard.php">Dashboard</a>
+
 </body>
 </html>
 

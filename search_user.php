@@ -1,6 +1,7 @@
 <?php
 include 'database.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
 
@@ -25,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <form method="POST" action="search_user.php">
+<link rel="stylesheet" href="authstyle.css">
     Username: <input type="text" name="username"><br>
     <input type="submit" value="Search User">
 </form>

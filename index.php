@@ -2,11 +2,11 @@
 
 session_start();
 
-if (isset($_SESSION['username'])) {
-    echo "Hello, " . $_SESSION['username'] . "! You are logged in.";
-} else {
-    echo "You are not logged in.";
-}
+// if (isset($_SESSION['username'])) {
+//     echo "Hello, " . $_SESSION['username'] . "! You are logged in.";
+// } else {
+//     echo "You are not logged in.";
+// }
 
 
      $title = "Site";
@@ -32,16 +32,27 @@ if (isset($_SESSION['username'])) {
 </head>
 <body>
     <header>
-        <nav class="topnav">
-            <br>
-            <a href = "login.php">
-            <img src="css/logos/logo.png" alt="Logo" class="logo">
+    <nav class="topnav">
+    <br>
+    <a href="login.php">
+        <img src="css/logos/logo.png" alt="Logo" class="logo">
+    </a>
+    <?php foreach ($navLinks as $link => $name): ?>
+        <a href="<?php echo $link; ?>"><?php echo $name; ?></a>
+    <?php endforeach; ?>
 
-            </a>
-            <?php foreach ($navLinks as $link => $name): ?>
-                <a href="<?php echo $link; ?>"><?php echo $name; ?></a>
-            <?php endforeach; ?>
-        </nav>
+
+    <span style="float: left; padding-left: 20px; font-weight: bold;">
+        <?php
+        if (isset($_SESSION['username'])) {
+            echo "Hello, " . htmlspecialchars($_SESSION['username']) . "!";
+        } else {
+            echo "You are not logged in.";
+        }
+        ?>
+    </span>
+</nav>
+
         <br>
         <h1 class="welcome">Leave Your Pet in Safe Hands – Expert Animal Care While You’re Away</h1>
     </header>
