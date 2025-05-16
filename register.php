@@ -1,7 +1,14 @@
 <?php
 require 'database.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+header('Content-Type: application/json');
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (!isset($_POST['username']) || !isset($_POST['password'])) {
+        echo json_encode(['success' => false, 'message' => 'Date incomplete.']);
+        exit();
+    }
+
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password
 
@@ -11,36 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindValue(2, $password, SQLITE3_TEXT);
 
     if ($stmt->execute()) {
-        echo "Registration successful! <a href='login.php'>Login here</a>";
+        echo json_encode(['success' => true, 'message' => 'Utilizator inregistrat cu succes.']);
     } else {
-        echo "Error: Username already exists.";
+        echo json_encode(['success' => false, 'message' => 'Eroare: Numele de utilizator exista deja.']);
     }
+    exit();
 }
+echo json_encode(['success' => false, 'message' => 'Cerere invalida.']);
+exit();
 ?>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <link rel="stylesheet" href="authstyle.css">
-</head>
-<body>
-    <h2>Register</h2>
-    <form action="register.php" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Register</button>
-    </form>
-    <h2> or would you prefer to go back to the main page </h2>
-    <a href = "index.php">Main Page</a>
-    <h2> or would you prefer to logout </h2>
-    <a href = "dashboard.php">Dashboard</a>
-
-</body>
-</html>
-

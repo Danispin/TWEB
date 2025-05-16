@@ -1,36 +1,94 @@
 <?php
-include 'database.php';
-
-$db = new Database('users.db');
-$conn = $db->getDB();
-
-$query = "SELECT * FROM users";
-$results = $conn->query($query);
-
-echo "<h2>Users List</h2>";
-echo "<table border='1'><tr><th>ID</th><th>Username</th><th>Email</th><th>Password</th></tr>";
-while ($row = $results->fetchArray()) {
-    echo "<tr><td>" . $row['id'] . "</td><td>" . $row['username'] . "</td><td>" . $row['email'] . "</td>" . "<td>" . $row['password'] . "</td></tr>";
-    echo "<td><form method='POST' action='delete_user.php'>
-            <input type='hidden' name='id' value='" . $row['id'] . "'>
-            <input type='submit' value='Delete User' onclick=\"return confirm('Are you sure you want to delete this user?');\">
-          </form></td>";
-}
-echo "</table>";
-
-echo "<a href = 'index.php'>Main Page</a>";s
+session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users List</title>
     <link rel="stylesheet" href="authstyle.css">
 </head>
 <body>
     <h2>Users List</h2>
-    <form method="POST" action="search_user.php">
-        Username: <input type="text" name="username"><br>
-       
+
+    <div id="usersTable">
+        <?php include 'get_users_table.php'; ?>
+    </div>
+
+    <h2>Adaugă utilizator</h2>
+    <form id="ajaxRegisterForm">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Înregistrează</button>
+    </form>
+
+    <div id="ajaxResponse"></div>
+
+    <h2>Main page </h2>
+    <a href = "index.php">Main Page</a>
+    <script>
+    // Formular AJAX pentru adăugare utilizator
+    document.getElementById('ajaxRegisterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        fetch('register.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const msgDiv = document.getElementById('ajaxResponse');
+            if (data.success) {
+                msgDiv.innerHTML = "<span style='color:green'>" + data.message + "</span>";
+                form.reset();
+                reloadUsersTable();
+            } else {
+                msgDiv.innerHTML = "<span style='color:red'>" + data.message + "</span>";
+            }
+        })
+        .catch(() => {
+            document.getElementById('ajaxResponse').innerHTML = "<span style='color:red'>Eroare AJAX.</span>";
+        });
+    });
+
+    // ajax pentru stergera unui utilizator
+    function deleteUser(userId) {
+        if (!confirm("Are you sure you want to delete this user?")) {
+            return;
+        }
+
+        fetch('delete_user.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'id=' + encodeURIComponent(userId)
+        })
+        .then(response => response.text())
+        .then(result => {
+            reloadUsersTable();
+        })
+        .catch(() => {
+            alert("Eroare la stergere.");
+        });
+    }
+
+    // functie pentru reincarcarea tabelului utilizatorilor
+    function reloadUsersTable() {
+        fetch('get_users_table.php')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('usersTable').innerHTML = html;
+            });
+    }
+    </script>
+</body>
+</html>
