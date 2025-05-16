@@ -18,17 +18,60 @@ session_start();
     ];
     
     $profiles = [
-        ["id" => "profile1", "name" => "Serious Guy", "price" => "5$/Visit", "experience" => "5 years", "location" => "Chisinau", "preferences" => "Cats, Dogs", "image" => "css/avatars/profile1/avatar1.png"],
-        ["id" => "profile2", "name" => "Glasses Nerd", "price" => "Vet", "image" => "css/avatars/profile2/avatar1.png"],
-        ["id" => "profile3", "name" => "Girl in a Jacket", "price" => "10$/Visit", "experience" => "2 years", "location" => "Chisinau", "image" => "css/avatars/profile3/avatar1.png"],
-        ["id" => "profile4", "name" => "Black Guy", "price" => "5$/Visit", "experience" => "3 years", "location" => "Chisinau", "preferences" => "Dogs", "image" => "css/avatars/profile4/avatar1.png"]
     ];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="./css/mystyle.css">
+    <script> document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".contact a").forEach(link => {
+        link.addEventListener("mouseenter", (e) => {
+            const id = link.getAttribute("href").split("/").pop().replace(".html", "");
+            const profileBox = document.getElementById(id);
+            if (profileBox) {
+                profileBox.style.display = "block";
+                profileBox.style.left = `${e.pageX + 10}px`;
+                profileBox.style.top = `${e.pageY + 10}px`;
+            }
+        });
+
+        link.addEventListener("mouseleave", () => {
+            const id = link.getAttribute("href").split("/").pop().replace(".html", "");
+            const profileBox = document.getElementById(id);
+            if (profileBox) {
+                profileBox.style.display = "none";
+            }
+        });
+    });
+});
+</script>
+    <style>
+        .profile-box {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .profile-box img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(document).ready(function() {
+            $(".profile-box").draggable({
+                containment: "window",
+                scroll: false
+            });
+        });
+    </script> 
 </head>
 <body>
     <header>
@@ -53,6 +96,7 @@ session_start();
     </span>
 </nav>
 
+        <br><br><br><br><br><br>
         <br>
         <h1 class="welcome">Leave Your Pet in Safe Hands – Expert Animal Care While You’re Away</h1>
     </header>
@@ -81,16 +125,23 @@ session_start();
         </div>
     </main>
     <br><br>
-    <div class="contact">
-        <?php foreach ($profiles as $profile): ?>
-            <a href="html/<?php echo $profile['id']; ?>.html">
-                <img src="<?php echo $profile['image']; ?>" alt="<?php echo $profile['name']; ?>">
-            </a>
-        <?php endforeach; ?>
+<!-- //   refresh buttons -->
+    <div class="profile-controls">
+    <button id="refreshBtn">Refresh Profiles</button>
+    <div class="nav-arrows">
+        <button id="prevBtn" class="nav-arrow">&lt;</button>
+        <div class="contact" id="ajaxProfiles"></div>
     </div>
-    <br><br>
+        <button id="nextBtn" class="nav-arrow">&gt;</button>
+    </div>
+</div>
+
+
+
+<!-- // for profile -->
+
     <?php foreach ($profiles as $profile): ?>
-        <div id="<?php echo $profile['id']; ?>" class="profile-box">
+        <div id="<?php echo $profile['id']; ?>" class="profile-box" id="profile-box">
             <h3><?php echo $profile['name']; ?></h3>
             <?php if (isset($profile['price'])): ?><p><?php echo $profile['price']; ?></p><?php endif; ?>
             <?php if (isset($profile['experience'])): ?><p>Experience: <?php echo $profile['experience']; ?></p><?php endif; ?>
